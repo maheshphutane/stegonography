@@ -1,8 +1,6 @@
 from PIL import Image
 import stepic
 
-
-# Encode data into image
 def encode():
     img = input("Enter image name(with extension): ")
     image = Image.open(img)
@@ -11,27 +9,28 @@ def encode():
 
     if (len(data) == 0):
         raise ValueError('Data is empty')
-    res = ''.join(format(ord(i), 'b') for i in data)
-    im1 = stepic.encode(image, res)
+    
+    #converting string to bytes format
+    
+    data1 = bytes(data, encoding="ascii")
+    
+    im1 = stepic.encode(image, data1)
 
-    im1.save( input("Enter the name of new image(: "))
+    im1.save( input("Enter the name of new image:- "))
 
 
-# Decode the data in the image
 def decode():
-    img = input("Enter image name(with extension) :")
+    img = input("Enter image name(with extension):- ")
     image = Image.open(img)
 
     data1 = stepic.decode(image)
-    print(data1)
+   
     return data1
 
-        # Main Function
 
 
 def main():
-    l=b'Mahesh'
-    print(l)
+
     a = int(input(":: Welcome to Steganography ::\n"
                   "1. Encode\n2. Decode\n"))
     if (a == 1):
